@@ -21,10 +21,21 @@ export function generateMetadata({ params }) {
   };
 }
 
+const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
 export default function BrandPage({ params }) {
   const brand = BRANDS.find((b) => b.id === params.brand);
   if (!brand) notFound();
   const products = getByBrand(brand.id);
+
+  const groups = [];
+  const groupIndex = new Map();
+  for (const p of products) {
+    const key = p.series || brand.label;
+    if (!groupIndex.has(key)) { groupIndex.set(key, groups.length); groups.push({ label: key, products: [] }); }
+    groups[groupIndex.get(key)].products.push(p);
+  }
+  const isGrouped = groups.length > 1;
 
   const brandFaqs = [
     { q: `What is the PMTA status of ${brand.label} products?`, a: brand.pmta === 'authorized' ? `${brand.label} has full FDA Pre-Market Tobacco Product Application (PMTA) marketing authorization, making it legal to sell in all US states.` : `${brand.label} products are sold under PMTA-pending status. The majority of disposable vape products on the US market are in this category. Always verify current regulatory status on the FDA website.` },
@@ -63,11 +74,32 @@ export default function BrandPage({ params }) {
             <h2>About {brand.label}</h2>
             <p>{brand.about}</p>
           </div>
-          <h2 style={{ fontFamily: 'var(--fd)', fontSize: 32, letterSpacing: '.04em', color: 'var(--white)', marginBottom: 24 }}>{brand.label} Products</h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 12, marginBottom: isGrouped ? 20 : 24 }}>
+            <h2 style={{ fontFamily: 'var(--fd)', fontSize: 32, letterSpacing: '.04em', color: 'var(--white)' }}>{brand.label} Products</h2>
+            {products.length > 0 && <p style={{ color: 'var(--silver)', fontSize: 14 }}>{products.length} product{products.length === 1 ? '' : 's'}{isGrouped ? ` across ${groups.length} collections` : ''}</p>}
+          </div>
+
+          {isGrouped && (
+            <nav className="filter-bar" aria-label="Jump to collection">
+              {groups.map((g) => (
+                <a key={g.label} href={`#${slugify(g.label)}`} className="filter-btn">{g.label} <span style={{ color: 'var(--silver)', marginLeft: 4 }}>({g.products.length})</span></a>
+              ))}
+            </nav>
+          )}
+
           {products.length ? (
-            <div className="products-grid">
-              {products.map((p) => <ProductCard key={p.id} product={p} />)}
-            </div>
+            groups.map((g) => (
+              <div key={g.label} id={slugify(g.label)} style={{ marginBottom: isGrouped ? 48 : 0, scrollMarginTop: 88 }}>
+                {isGrouped && (
+                  <h3 style={{ fontFamily: 'var(--fc)', fontSize: 19, fontWeight: 700, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--gold-a)', marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+                    {g.label} <span style={{ color: 'var(--silver)', fontWeight: 400, textTransform: 'none', fontFamily: 'var(--fb)', fontSize: 14 }}>— {g.products.length} flavor{g.products.length === 1 ? '' : 's'}</span>
+                  </h3>
+                )}
+                <div className="products-grid">
+                  {g.products.map((p) => <ProductCard key={p.id} product={p} />)}
+                </div>
+              </div>
+            ))
           ) : (
             <p style={{ color: 'var(--silver)' }}>No products currently listed for this brand.</p>
           )}

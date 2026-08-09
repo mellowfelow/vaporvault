@@ -216,7 +216,7 @@ input, textarea, select { font-family: var(--fb); }
 
 /* Filters */
 .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-.filter-btn { font-family: var(--fc); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 9px 16px; border-radius: var(--r); border: 1.5px solid rgba(255,255,255,.1); color: var(--off); background: transparent; transition: var(--t); min-height: 40px; }
+.filter-btn { display: inline-flex; align-items: center; font-family: var(--fc); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 9px 16px; border-radius: var(--r); border: 1.5px solid rgba(255,255,255,.1); color: var(--off); background: transparent; transition: var(--t); min-height: 40px; text-decoration: none; }
 .filter-btn:hover { border-color: rgba(201,168,76,.4); color: var(--gold-a); }
 .filter-btn.active { background: var(--gold-a); border-color: var(--gold-a); color: var(--black); }
 
