@@ -37,7 +37,8 @@ Carried forward unchanged from the old build (client confirmed "same as before" 
 
 ## Brands (18)
 Carried forward from the old build (12): Geek Bar, RAZ Vape, Lost Mary, Flum, Breeze Smoke, Fifty Bar, Tyson 2.0,
-Vuse (FDA auth), NJOY (FDA auth), SMOK, Vaporesso, HQD — 17 products total across disposables and pod systems.
+Vuse (FDA auth), NJOY (FDA auth), SMOK, Vaporesso, HQD — 94 products total (78 of them Fifty Bar, see below;
+16 across the remaining 11 brands) spanning disposables and pod systems.
 
 Added later, logo-only (6): Nexa, Elf Bar, Off Stamp, Fume, Foger, UT Vape — client supplied only a logo image
 for each, no product specs (device names/puff counts/prices/flavors) or verified PMTA status. Per Rule 5 (never
@@ -48,6 +49,29 @@ product entries to `PRODUCTS` in `src/config/site.js` when the client supplies t
 Note: the old build's About page stated "we do not carry Elf Bar/EB Create products due to their lack of FDA
 authorization." The client explicitly asked to add Elf Bar and had that sentence removed — confirmed decision,
 not an oversight.
+
+## Fifty Bar — real product data (sourced from thefiftybar.org, 2026)
+Fifty Bar was upgraded from a single placeholder SKU to full real data: 78 individual flavor products across all
+7 official collections (Original, White, Black, Fifty Bar × Fruitia 20K, Fifty Bar × Humble, Fifty Bar × Hidden
+Hills, Midnight Series), each with its own product photo, real device specs, and a uniquely-written description.
+
+- **Device specs** (verified via thefiftybar.org product pages, not estimated): 6,500-puff tier (Original/White/
+  Humble/Hidden Hills) = 5% (50mg) nic, 18mL, 650mAh, Mesh Coil, $18.99. 20,000-puff tier (Black/Fruitia/Midnight)
+  = 5% (50mg) nic, 28mL, 900mAh Grade A, Dual Parallel Mesh Coil, Always Active Boost Mode, 3-Level Adjustable
+  Airflow, $24.99.
+- **Brand facts** (from thefiftybar.org/about/): founded 2023 in California, 150+ American jobs, Original Series
+  built via a partnership with Beard Vape Co., later collabs with Fruitia, Hidden Hills Club, and Humble Juice
+  Co. — all reflected in `BRANDS.fifty-bar.about` in `src/config/site.js`.
+- **Images**: client supplied 78 raw product renders in `product images/` (gitignored, not deployed — matches
+  the `assets/` convention). Normalized onto uniform white 1600×1200 canvases via
+  `scripts/normalize-fiftybar-products.mjs` into `public/images/products/fifty-bar/`. One source file
+  (`Midnight Series/Fresh-Mango-Lychee.png`) was excluded — it doesn't match any of the 9 official Midnight
+  Series flavors and was likely misfiled by the client.
+- **Product pages**: added `src/app/product/[slug]/page.jsx` — a dedicated SEO landing page per product (used by
+  all brands, not just Fifty Bar) with full meta/canonical, Product+Offer JSON-LD, spec table, and related-flavor
+  internal links. All 78 Fifty Bar URLs are in `sitemap.js`.
+- Descriptions are original writing based on the real flavor names/ingredients — not copied from
+  thefiftybar.org's own copy.
 
 ## Known asset gaps
 - No hero photo for Vuse or the 6 logo-only brands — all fall back to the generic hero image (`hero-1.jpg`)

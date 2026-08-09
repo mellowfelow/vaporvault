@@ -1,4 +1,4 @@
-import { SITE, BRANDS, FLAVORS, POSTS, CATEGORIES } from '@/config/site';
+import { SITE, BRANDS, FLAVORS, POSTS, CATEGORIES, PRODUCTS } from '@/config/site';
 
 const STATIC_ROUTES = [
   '', 'shop', 'brands', 'flavors', 'blog', 'best-sellers', 'new-arrivals', 'deals',
@@ -21,6 +21,7 @@ export default function sitemap() {
   BRANDS.forEach((b) => entries.push({ url: `${base}/brands/${b.id}/`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 }));
   FLAVORS.forEach((f) => entries.push({ url: `${base}/flavors/${f.id}/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 }));
   POSTS.forEach((p) => entries.push({ url: `${base}/blog/${p.slug}/`, lastModified: new Date(p.date), changeFrequency: 'monthly', priority: 0.6 }));
+  PRODUCTS.forEach((p) => entries.push({ url: `${base}/product/${p.id}/`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 }));
 
   return entries;
 }

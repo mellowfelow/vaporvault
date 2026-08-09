@@ -78,9 +78,9 @@ export const BRANDS = [
   },
   {
     id: 'fifty-bar', label: 'Fifty Bar', emoji: '🇺🇸', pmta: 'pending', rank: null,
-    badge: '🇺🇸 USA Made',
+    badge: '🇺🇸 USA Made', founded: 2023, hq: 'California',
     heroImg: '/images/brand-fifty-bar.jpg', logo: '/images/logo-fifty-bar.png',
-    about: "Fifty Bar is one of the very few disposable vape brands that manufactures and fills its devices in the United States. The Fifty Bar 20K features Dual Parallel Mesh Coil technology, Always Active Boost Mode, and an impressive 34+ bold American flavor options. With 18ml of e-liquid at 50mg/ml nicotine strength and up to 20,000 puffs, it delivers outstanding value. The USA-made positioning resonates strongly with American consumers who prefer domestic manufacturing.",
+    about: "Fifty Bar Vape launched in 2023 out of California with a straightforward goal: build a disposable vape entirely on American soil instead of importing another overseas device. Every unit is assembled and filled at the brand's US facility, a commitment that now supports over 150 American jobs. The debut collection — the Original Series — came out of a partnership with Beard Vape Co., translating their well-known numbered e-liquid profiles into disposable form for the first time. Fifty Bar has since expanded to seven collections and 70+ flavors through further collaborations with Fruitia, Hidden Hills Club, and Humble Juice Co., while keeping every device built around a Dual Parallel Mesh Coil and, on the 20,000-puff lines, an Always Active Boost Mode with 3-level adjustable airflow.",
   },
   {
     id: 'tyson', label: 'Tyson 2.0', emoji: '🥊', pmta: 'pending', rank: null,
@@ -158,6 +158,159 @@ export const BRANDS = [
 
 export const getBrand = (id) => BRANDS.find((b) => b.id === id);
 
+/* ── Fifty Bar — sourced from thefiftybar.org (real device specs + full flavor
+   lineup across all 7 collections). Descriptions are written fresh, not copied. ── */
+const FIFTY_BAR_TIERS = {
+  small: { puffs: '6,500', price: 18.99, nic: '5% (50mg)', ml: '18mL', battery: '650mAh Rechargeable', coil: 'Mesh Coil', boost: null, airflow: null, cat: '5000-10000' },
+  large: { puffs: '20,000', price: 24.99, nic: '5% (50mg)', ml: '28mL', battery: '900mAh Grade A Rechargeable', coil: 'Dual Parallel Mesh Coil', boost: 'Always Active', airflow: '3-Level Adjustable', cat: '20000-plus' },
+};
+
+const FIFTY_BAR_COLLECTIONS = [
+  {
+    series: 'original', label: 'Original Series', tier: 'small',
+    flavors: [
+      ['Aloe Grapple Watermelon', 'Cool aloe vera layered with tart green apple and juicy watermelon for a smooth, hydrating draw from first puff to last.', 'Popular'],
+      ['Aloe Kiwi Strawberry', 'Ripe strawberry and tangy kiwi riding on a mellow aloe vera base — a fan-favorite fruit combo with a smooth finish.'],
+      ['Blue Razzle Ice', 'Tangy blue raspberry candy hits an arctic ice finish for one of the coldest, most intense draws in the Original lineup.', 'Best Seller'],
+      ['Blueberry Cereal Donut Milk', 'Sweet blueberry cereal, glazed donut, and cold milk stacked into a breakfast-inspired dessert vape.'],
+      ['Cinnamon Funnel Cake', 'Warm cinnamon sugar over fresh fairground funnel cake — a cozy dessert flavor built for all-day vaping.', 'Hot'],
+      ['Diamond Peach Ice', 'Ripe Georgia peach crushed over a diamond-grade ice blend for a maximum-chill fruit finish.'],
+      ['Juicy Mango Melon Ice', 'Tropical mango and sweet honeydew melon paired over a light ice finish for a refreshing everyday vape.'],
+      ['Kyoho Grape Jelly', 'Dark, sweet Kyoho grape captured as a smooth, jelly-rich draw with real depth.'],
+      ['Mint', 'Clean, icy American peppermint with no sweeteners or add-ons — just a crisp, classic mint draw.'],
+      ['Pacific Cooler', 'A citrus-forward tropical punch blend inspired by the classic juice-aisle cooler, smoothed out for vaping.'],
+      ['Pink Squares', 'Old-school chewy pink candy squares translated into a nostalgic, sweet-candy vape flavor.'],
+      ['Tobaccocino', 'Smooth American tobacco meets rich espresso for a grown-up, coffeehouse-inspired blend.', 'Popular'],
+      ['Triple Watermelon', 'Three layers of watermelon — fresh rind, sweet heart, and an icy finish — stacked into one draw.', 'Best Seller'],
+      ['Vanilla Custard', "Rich, velvety vanilla custard with a smooth, creamy finish — the Original Series' all-day classic."],
+    ],
+  },
+  {
+    series: 'white', label: 'White Series', tier: 'small',
+    flavors: [
+      ['Baja Mango', 'Sun-ripened mango with a slightly tangy edge, inspired by fruit fresh off the Baja coast.'],
+      ['Clear', 'Pure, unflavored vapor for adult vapers who want a clean draw with no added flavoring.'],
+      ['Fresh Mango Lychee', 'Ripe mango balanced against delicately floral lychee for a light, well-rounded tropical draw.', 'Popular'],
+      ['Frozen Apple', 'Crisp Granny Smith apple frozen at peak tartness for a shockingly fresh, icy bite.'],
+      ['Frozen Orange Mango Pear', 'A frozen tropical trio of citrus orange, sweet mango, and juicy pear in one smooth draw.', 'Best Seller'],
+      ['Frozen Watermelon', 'The purest watermelon flavor in the White Series lineup, chilled to a crisp, clean finish.'],
+      ['Mint', 'White Series Mint leans even cooler and glacial than the Original — fresh peppermint, nothing added.'],
+      ['Pineapple Whip', 'Tangy pineapple churned into a smooth, creamy whip-style finish, reminiscent of soft-serve.', 'Hot'],
+      ['Strawberry Kiwi Ice', 'The classic strawberry-kiwi pairing chilled to a crisp, refreshing ice finish.', 'Popular'],
+      ['Strawberry Lemon Grape', 'A bold three-way mashup of ripe strawberry, sharp lemon zest, and deep Concord grape.'],
+      ['Strawberry Watermelon Twist', 'Sweet strawberry twisted together with fresh watermelon for a bright, easy-drinking draw.'],
+    ],
+  },
+  {
+    series: 'black', label: 'Black Series', tier: 'large',
+    flavors: [
+      ['Blueberry Cereal Donut Milk', 'The Black Series flagship — sweet blueberry cereal, glazed donut, and cold milk, now in the 20K format.', 'Best Seller'],
+      ['Blueberry Yogurt', 'Creamy Greek-style yogurt swirled with ripe blueberries for a tart, refreshing dessert draw.'],
+      ['Butterbean', 'Smooth butterscotch-tinged vanilla cream with a warm, buttery finish.'],
+      ['Cinnamon Funnel Cake', "Fairground-fresh funnel cake and cinnamon sugar, scaled up to the Black Series' 20,000-puff format.", 'Hot'],
+      ['Gold Tobacco', 'Premium gold-leaf American tobacco, smooth and slightly sweet with a refined finish.'],
+      ['Kentucky Tobacco', 'Bold, full-bodied Kentucky-style tobacco — the most robust tobacco profile in the lineup.'],
+      ['Milky Loops', 'Rainbow fruit cereal loops soaked in cold, sweet milk — a nostalgic breakfast-bowl draw.', 'Popular'],
+      ['Raspberry Jam', 'Thick, rich raspberry jam with a touch of tartness and real berry depth.'],
+      ['Strawberry Cereal Donut Milk', 'The fruity counterpart to the blueberry classic — strawberry cereal, glazed donut, cold milk.', 'Popular'],
+      ['Strawberry Super Strudel', 'Flaky pastry crust, sweet strawberry jam filling, and a dusting of powdered sugar.', 'Best Seller'],
+      ['Vanilla Custard', 'The all-time classic vanilla custard profile, now delivering 20,000 puffs of smooth, creamy flavor.', 'USA Made'],
+    ],
+  },
+  {
+    series: 'fruitia', label: 'Fifty Bar × Fruitia 20K', tier: 'large', partner: 'Fruitia',
+    flavors: [
+      ['B-Pop', "Fruitia's signature B-Pop profile — sweet, explosive bubblegum candy with a bright tropical edge."],
+      ['Baja Burst', "A tangy tropical citrus blast built around Fruitia's Baja-inspired flavor profile."],
+      ['Blueberry Pound Cake', 'Dense, buttery pound cake loaded with fresh blueberries — a Fruitia bakery-style favorite.'],
+      ['Bonker Berries', "A wild mixed-berry collision of strawberry, blueberry, and raspberry in Fruitia's signature style."],
+      ['Cookie Butter', 'Rich, spiced speculoos cookie butter with warm notes of caramel and cinnamon.', 'Hot'],
+      ['Hawaiian Punch', "Fruitia's take on the iconic tropical fruit punch blend — sweet, familiar, and instantly recognizable.", 'Best Seller'],
+      ['Polar Ice', 'A sub-zero arctic menthol built for vapers who want the coldest possible draw in the lineup.', 'Popular'],
+      ['Sour Batch', 'A mouth-puckering sour candy mix across a medley of mixed berries.'],
+      ['Southern Tobacco', 'A smooth, Southern-style tobacco profile with warm, mellow sweetness.'],
+      ['Spearmint', 'Cool, sweet spearmint — lighter and sweeter than peppermint with a lingering fresh finish.'],
+      ['Strawberry Beltz', 'Sweet chewy strawberry candy belts, captured in vapor form.', 'Popular'],
+      ['Swedish Fish', 'The iconic berry-forward gummy candy profile, translated into a nostalgic all-day vape.'],
+    ],
+  },
+  {
+    series: 'humble', label: 'Fifty Bar × Humble', tier: 'small', partner: 'Humble Juice Co.',
+    flavors: [
+      ['Banana Funnel Cake', 'Ripe banana layered over warm, crispy fried funnel cake and cinnamon sugar.', 'Popular'],
+      ['Blue Razz Bubblegum', "Tangy blue raspberry wrapped in sweet bubblegum candy — a Humble Juice Co. classic profile."],
+      ['Blue Slush', 'An ice-cold blue raspberry slushie translated into a smooth, refreshing vape.'],
+      ['Golden Mango', 'Ripe, golden Ataulfo mango with a buttery-sweet richness, less tart than typical mango blends.'],
+      ['Lemon Watermelon', 'Bright lemon zest meets sweet summer watermelon for a tart-sweet balance.', 'Hot'],
+      ['Orange Mango Sherbet', 'Creamy sherbet swirled with sweet orange and ripe mango for a frozen-dessert-style draw.', 'Best Seller'],
+      ['Strawberry Banana', "Humble's iconic smoothie-inspired pairing of sweet strawberry and ripe banana."],
+      ['Sweet Mint', 'A dialed-in mint profile — cooler than spearmint, sweeter than peppermint.'],
+      ['Vanilla Tobacco', 'Smooth American tobacco layered with sweet, creamy vanilla for a sophisticated finish.'],
+      ['Watermelon Lychee', 'Fresh summer watermelon paired with delicately floral lychee for an exotic fruit combo.'],
+    ],
+  },
+  {
+    series: 'hiddenhills', label: 'Fifty Bar × Hidden Hills', tier: 'small', partner: 'Hidden Hills Club',
+    flavors: [
+      ['Hawaiian Nectar', "A tropical fruit blend of guava, papaya, and passion fruit in Hidden Hills Club's signature style.", 'Popular'],
+      ['Honeyberry Cream', 'Sweet honeyed berries draped in smooth, rich cream for an indulgent finish.'],
+      ['Lava Blast', 'An explosive tropical mix of mango, passion fruit, and citrus built for maximum flavor intensity.', 'Hot'],
+      ['Lemon Cake Dough', 'Bright lemon zest baked into soft, sweet cake dough — tart citrus meets warm pastry.'],
+      ['Piña Lush', 'A creamy piña colada profile — tropical pineapple and coconut cream blended smooth.'],
+      ['Pink Milk', 'Sweet strawberry-cereal milk, the leftover-bowl flavor everyone remembers, elevated to a full vape profile.'],
+      ['Pink Sour Straws', 'The iconic pink sour straw candy — a sharp sour-sweet strawberry-lemon punch.', 'Popular'],
+      ['Sour Peach Ringz', 'Sugar-coated sour peach gummy rings, captured as a sweet-tart candy vape.'],
+      ['Vanilla Bean Tobacco', "Premium vanilla bean over smooth American tobacco — Hidden Hills Club's most refined blend."],
+      ['Wazza Limon', 'A bold, sharp lemon-citrus candy profile with an intensely tangy finish.'],
+      ['Yeti Mint', 'An arctic-grade mint profile built for vapers who want the coldest, most intense menthol available.'],
+    ],
+  },
+  {
+    series: 'midnight', label: 'Midnight Series', tier: 'large',
+    flavors: [
+      ['Iced Strawberry Pear', 'Sweet ripe strawberry blended with crisp, juicy pear, then frozen to an icy finish.', 'New'],
+      ['Iced Green Rancher', 'A hard-candy-inspired green apple profile with a sharp, icy edge.', 'New'],
+      ['Iced Blue Rancher', 'The blue raspberry take on a classic hard candy, delivered with an icy finish.', 'New'],
+      ['Sour Strawberry Melon', 'A sour candy spin on strawberry and fresh watermelon.', 'New'],
+      ['Orange Mint', 'Fresh citrus orange meets clean, cool spearmint for an unexpected, refreshing pairing.', 'New'],
+      ['Limoncello', 'A zesty, Italian-inspired lemon liqueur profile with a bright citrus punch.', 'New'],
+      ['Frozen Peach Lime Razz', 'A frozen triple-fruit mix of Georgia peach, tart lime, and blue raspberry.', 'New'],
+      ['Frozen Orange Pom', 'Sun-ripened orange meets tart pomegranate, both flash-frozen for a bold, refreshing finish.', 'New'],
+      ['Banana Fresca', 'Ripe tropical banana with a light, sparkling fresca-style finish.', 'New'],
+    ],
+  },
+];
+
+const fbSlug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const FIFTY_BAR_PRODUCTS = FIFTY_BAR_COLLECTIONS.flatMap((col) => {
+  const spec = FIFTY_BAR_TIERS[col.tier];
+  return col.flavors.map(([name, desc, badge]) => {
+    const imgSlug = `${col.series}-${fbSlug(name)}`;
+    return {
+      id: `fifty-bar-${imgSlug}`,
+      brand: 'fifty-bar',
+      name: `Fifty Bar ${col.label} — ${name}`,
+      puffs: spec.puffs,
+      price: spec.price,
+      nic: spec.nic,
+      ml: spec.ml,
+      battery: spec.battery,
+      coil: spec.coil,
+      boost: spec.boost,
+      airflow: spec.airflow,
+      desc,
+      flavors: [name],
+      badge: badge || '',
+      cat: spec.cat,
+      emoji: '🇺🇸',
+      image: `/images/products/fifty-bar/${imgSlug}.webp`,
+      series: col.label,
+      partner: col.partner || null,
+    };
+  });
+});
+
 export const PRODUCTS = [
   { id: 'geek-bar-pulse-15000', brand: 'geek-bar', name: 'Geek Bar Pulse 15000', puffs: '15,000', price: 19.99, nic: '50mg', ml: '16ml', desc: 'Dual Mesh Coil, smart display screen, adjustable power. The gold standard in US disposables.', flavors: ['Strawberry Mango', 'Watermelon Ice', 'Blue Razz Ice', 'Tropical Rainbow Blast', 'Miami Mint', 'Sour Apple Ice'], badge: 'Best Seller', cat: 'under-20000', emoji: '⚡' },
   { id: 'geek-bar-pulse-x25000', brand: 'geek-bar', name: 'Geek Bar Pulse X 25000', puffs: '25,000', price: 24.99, nic: '50mg', ml: '22ml', desc: 'Ultra-high puff count with Pulse Mode for max vapor. HD digital display, Type-C fast charge.', flavors: ['Berry Trio Ice', 'Pineapple Mango', 'Miami Mint', 'Cherry Watermelon Ice', 'Sakura Grape'], badge: 'New', cat: '20000-plus', emoji: '⚡' },
@@ -168,7 +321,7 @@ export const PRODUCTS = [
   { id: 'flum-pebble-6000', brand: 'flum', name: 'Flum Pebble 6000', puffs: '6,000', price: 14.99, nic: '50mg', ml: '14ml', desc: 'Ultra-portable pebble shape, beginner-friendly, no buttons, draw-activated. Bold flavors in a compact form.', flavors: ['Strawberry Ice Cream', 'Watermelon Bubble Gum', 'Apple Peach', 'Black Ice', 'Pink Lemon'], badge: '', cat: '5000-10000', emoji: '💨' },
   { id: 'breeze-pro', brand: 'breeze', name: 'Breeze Pro', puffs: '2,000', price: 11.99, nic: '50mg', ml: '6ml', desc: 'Top 4 US retail brand (Circana data). Smooth, consistent vapor. Trusted name widely available nationwide.', flavors: ['Mango Ice', 'Watermelon Ice', 'Strawberry Banana', 'Mint', 'Pineapple Ice', 'Lychee Ice'], badge: '', cat: 'under-5000', emoji: '🌬️' },
   { id: 'breeze-prime-6000', brand: 'breeze', name: 'Breeze Prime 6000', puffs: '6,000', price: 15.99, nic: '50mg', ml: '10ml', desc: 'Upgraded Breeze experience. #7 retail brand US by Circana. Rechargeable battery, expanded flavor library.', flavors: ['Mango Ice', 'Blueberry Mint', 'Peach Ice', 'Watermelon Patch', 'Cool Mint'], badge: '', cat: '5000-10000', emoji: '🌬️' },
-  { id: 'fifty-bar-20k', brand: 'fifty-bar', name: 'Fifty Bar 20K', puffs: '20,000', price: 24.99, nic: '50mg', ml: '18ml', desc: 'The ONLY disposable vape built and filled in the USA. Dual Parallel Mesh Coil, Always Active Boost Mode. 34+ bold American flavors.', flavors: ['Strawberry Cereal Donut Milk', 'Vanilla Custard', 'Blueberry Cereal Donut Milk', 'Tobaccocino', 'Cinnamon Funnel Cake', 'Triple Watermelon', 'Diamond Peach Ice'], badge: 'USA Made', cat: '20000-plus', emoji: '🇺🇸' },
+  ...FIFTY_BAR_PRODUCTS,
   { id: 'tyson-heavyweight', brand: 'tyson', name: 'Tyson 2.0 Heavyweight', puffs: '7,000', price: 16.99, nic: '50mg', ml: '12ml', desc: 'Mike Tyson-branded disposable. Knockout flavor, smooth draw. One of the most recognized celebrity vape brands in the US.', flavors: ['Strawberry Watermelon Punch', 'Blue Razz', 'Mango Peach', 'Bombpop', 'Grape Ice', 'Pink Lemonade'], badge: '', cat: '5000-10000', emoji: '🥊' },
   { id: 'vuse-alto', brand: 'vuse', name: 'Vuse Alto', puffs: 'N/A', price: 8.99, nic: '50mg', ml: '1.8ml pod', desc: '#1 US retail brand. Full FDA PMTA authorization. Pre-filled pods in Tobacco, Menthol — only FDA-authorized flavors.', flavors: ['Rich Tobacco', 'Menthol'], badge: 'FDA Auth', cat: 'pod-system', emoji: '✅' },
   { id: 'njoy-ace', brand: 'njoy', name: 'NJOY Ace', puffs: 'N/A', price: 7.99, nic: '45mg', ml: 'per pod', desc: 'FDA marketing authorization granted. Altria distribution network. Widely available. Tobacco and menthol flavors only.', flavors: ['Tobacco', 'Menthol'], badge: 'FDA Auth', cat: 'pod-system', emoji: '✅' },
@@ -180,7 +333,7 @@ export const PRODUCTS = [
 export const getById = (id) => PRODUCTS.find((p) => p.id === id);
 export const getByBrand = (brandId) => PRODUCTS.filter((p) => p.brand === brandId);
 export const getByCat = (cat) => PRODUCTS.filter((p) => p.cat === cat);
-export const FEATURED_IDS = ['geek-bar-pulse-15000', 'raz-dc25000', 'fifty-bar-20k', 'lost-mary-mo5000', 'breeze-prime-6000', 'tyson-heavyweight', 'flum-pebble-6000', 'hqd-cuvie-bar'];
+export const FEATURED_IDS = ['geek-bar-pulse-15000', 'raz-dc25000', 'fifty-bar-black-vanilla-custard', 'lost-mary-mo5000', 'breeze-prime-6000', 'tyson-heavyweight', 'flum-pebble-6000', 'hqd-cuvie-bar'];
 export const getFeatured = () => PRODUCTS.filter((p) => FEATURED_IDS.includes(p.id));
 export const getNewArrivals = () => PRODUCTS.filter((p) => p.badge === 'New' || p.badge === 'USA Made');
 export const getBestSellers = () => PRODUCTS.filter((p) => p.badge === 'Best Seller' || p.badge === 'Hot' || FEATURED_IDS.includes(p.id));

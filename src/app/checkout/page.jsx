@@ -182,7 +182,9 @@ export default function CheckoutPage() {
                   const b = getBrand(p.brand);
                   return (
                     <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
-                      <div style={{ width: 52, height: 52, background: 'var(--dark3)', borderRadius: 'var(--r)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, flexShrink: 0 }} aria-hidden="true">{p.emoji}</div>
+                      <div style={{ width: 52, height: 52, background: p.image ? '#fff' : 'var(--dark3)', borderRadius: 'var(--r)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, flexShrink: 0, position: 'relative', overflow: 'hidden' }} aria-hidden="true">
+                        {p.image ? <Image src={p.image} alt="" fill sizes="52px" style={{ objectFit: 'contain', padding: 3 }} /> : p.emoji}
+                      </div>
                       <div style={{ flex: 1 }}>
                         <p style={{ fontFamily: 'var(--fc)', fontSize: 10, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--gold-a)' }}>{b?.label}</p>
                         <p style={{ fontFamily: 'var(--fc)', fontSize: 13, fontWeight: 700, color: 'var(--white)' }}>{p.name}</p>

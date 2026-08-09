@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/lib/CartContext';
 import { getBrand, getById, RULES } from '@/config/site';
 
@@ -28,7 +29,9 @@ export default function CartDrawer() {
             const b = getBrand(p.brand);
             return (
               <div className="cart-item" key={item.id}>
-                <div className="cart-item-img" aria-hidden="true">{p.emoji}</div>
+                <div className="cart-item-img" aria-hidden="true" style={p.image ? { background: '#fff', position: 'relative' } : undefined}>
+                  {p.image ? <Image src={p.image} alt="" fill sizes="56px" style={{ objectFit: 'contain', padding: 4 }} /> : p.emoji}
+                </div>
                 <div>
                   <p className="cart-item-brand">{b?.label}</p>
                   <p className="cart-item-name">{p.name}</p>

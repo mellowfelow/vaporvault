@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getBrand } from '@/config/site';
 import { useCart } from '@/lib/CartContext';
 import { showToast } from '@/lib/toast';
@@ -22,17 +23,23 @@ export default function ProductCard({ product }) {
     showToast(`✅ ${product.name} added to cart`, 'success');
   };
 
+  const href = `/product/${product.id}/`;
+
   return (
     <article className="product-card">
-      <Link href={`/brands/${product.brand}/`} style={{ display: 'block', textDecoration: 'none' }}>
-        <div className="pc-img">
+      <Link href={href} style={{ display: 'block', textDecoration: 'none' }}>
+        <div className={`pc-img ${product.image ? 'pc-img-photo' : ''}`}>
           {product.badge && <span className={`pc-badge ${badgeClass(product.badge)}`}>{product.badge}</span>}
-          <span style={{ fontSize: 64 }} aria-hidden="true">{product.emoji}</span>
+          {product.image ? (
+            <Image src={product.image} alt={product.name} fill sizes="(max-width: 600px) 50vw, 260px" style={{ objectFit: 'contain' }} />
+          ) : (
+            <span style={{ fontSize: 64 }} aria-hidden="true">{product.emoji}</span>
+          )}
         </div>
       </Link>
       <div className="pc-body">
         <p className="pc-brand">{brand?.label}</p>
-        <Link href={`/brands/${product.brand}/`} style={{ textDecoration: 'none' }}>
+        <Link href={href} style={{ textDecoration: 'none' }}>
           <h3 className="pc-name">{product.name}</h3>
         </Link>
         <div className="pc-puffs">⚡ {product.puffs} puffs</div>

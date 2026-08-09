@@ -7,3 +7,4 @@ out/
 .env*.local
 .claude/scheduled_tasks.lock
 assets/
+product images/
