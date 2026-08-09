@@ -103,13 +103,13 @@ export const BRANDS = [
   {
     id: 'smok', label: 'SMOK', emoji: '🔥', pmta: 'pending', rank: null,
     badge: '',
-    heroImg: '/images/brand-smok.jpg', logo: null,
+    heroImg: '/images/brand-smok.jpg', logo: '/images/logo-smok.png',
     about: "SMOK (Shenzhen IVPS Technology) has been a dominant force in refillable vape kit markets since 2010, often called the \"godfather\" of vape kits. With a diversified portfolio spanning tanks, pods, mods, and replacement coils, SMOK caters to all experience levels. Their Nord 5 pod mod represents the current flagship for experienced vapers seeking adjustable airflow, multiple coil options, and a reliable 2000mAh battery. SMOK products have strong presence in both online retailers and dedicated vape shops.",
   },
   {
     id: 'vaporesso', label: 'Vaporesso', emoji: '💡', pmta: 'pending', rank: null,
     badge: '',
-    heroImg: '/images/brand-vaporesso.jpg', logo: null,
+    heroImg: '/images/brand-vaporesso.jpg', logo: '/images/logo-vaporesso.png',
     about: "Vaporesso (Smoore Technology) is recognized as an innovation leader in pod systems, consistently winning industry awards for product design and technology. The XROS Pro 2 delivers best-in-class flavor through COREX heating technology, a 1200mAh battery, and a refined MTL (mouth-to-lung) experience that closely mimics the draw of a cigarette. For adult smokers transitioning to vaping, the XROS series is widely recommended by harm-reduction advocates and vape review sites as the gold standard for refillable pod systems.",
   },
   {
@@ -117,6 +117,42 @@ export const BRANDS = [
     badge: '📊 Circana Top 8',
     heroImg: '/images/brand-hqd.jpg', logo: '/images/logo-hqd.png',
     about: "HQD ranks #8 in US retail e-cigarette sales according to Circana data — a strong position that reflects its appeal as an affordable, accessible disposable vape option. The Cuvie Bar series offers a slim bar form factor with draw activation and a wide selection of popular fruit and ice flavors at accessible price points. HQD has maintained consistent retail presence across convenience stores and vape shops, making it a reliable choice for budget-conscious adult vapers.",
+  },
+  {
+    id: 'nexa', label: 'Nexa', emoji: '🌀', pmta: 'pending', rank: null,
+    badge: '',
+    heroImg: '/images/hero-1.jpg', logo: '/images/logo-nexa.png',
+    about: 'Nexa is a disposable vape brand carried at VaporVault. Full product listings for Nexa are coming soon.',
+  },
+  {
+    id: 'elf-bar', label: 'Elf Bar', emoji: '🧚', pmta: 'pending', rank: null,
+    badge: '',
+    heroImg: '/images/hero-1.jpg', logo: '/images/logo-elf-bar.png',
+    about: 'Elf Bar is a disposable vape brand carried at VaporVault. Full product listings for Elf Bar are coming soon.',
+  },
+  {
+    id: 'off-stamp', label: 'Off Stamp', emoji: '🎯', pmta: 'pending', rank: null,
+    badge: '',
+    heroImg: '/images/hero-1.jpg', logo: '/images/logo-off-stamp.png',
+    about: 'Off Stamp is a disposable vape brand carried at VaporVault. Full product listings for Off Stamp are coming soon.',
+  },
+  {
+    id: 'fume', label: 'Fume', emoji: '💭', pmta: 'pending', rank: null,
+    badge: '',
+    heroImg: '/images/hero-1.jpg', logo: '/images/logo-fume.png',
+    about: 'Fume is a disposable vape brand carried at VaporVault. Full product listings for Fume are coming soon.',
+  },
+  {
+    id: 'foger', label: 'Foger', emoji: '🌫️', pmta: 'pending', rank: null,
+    badge: '',
+    heroImg: '/images/hero-1.jpg', logo: '/images/logo-foger.png',
+    about: 'Foger is a disposable vape brand carried at VaporVault. Full product listings for Foger are coming soon.',
+  },
+  {
+    id: 'ut-vape', label: 'UT Vape', emoji: '💨', pmta: 'pending', rank: null,
+    badge: '',
+    heroImg: '/images/hero-1.jpg', logo: '/images/logo-ut-vape.png',
+    about: 'UT Vape is a disposable vape brand carried at VaporVault. Full product listings for UT Vape are coming soon.',
   },
 ];
 

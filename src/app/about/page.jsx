@@ -9,7 +9,7 @@ export const metadata = {
 
 const BLOCKS = [
   { h: 'Our Product Selection', p: 'We stock only brands that appear in legitimate US sales data. Our primary reference is the CDC Foundation Tobacco Monitoring report using Circana retail POS data — the most authoritative public dataset on US e-cigarette sales. We supplement this with strong online-market brands verified by major vape editorial sites.' },
-  { h: 'Compliance First', p: 'We disclose PMTA status on every brand page. We do not ship to states with flavor bans or PMTA directory requirements that would prohibit our products. We do not carry Elf Bar/EB Create products due to their lack of FDA authorization.' },
+  { h: 'Compliance First', p: 'We disclose PMTA status on every brand page. We do not ship to states with flavor bans or PMTA directory requirements that would prohibit our products.' },
   { h: 'Editorial Independence', p: 'Our blog and product descriptions are written by our editorial team and are not paid placements. We disclose when brand information comes from manufacturer sources. Our goal is to help adult vapers make informed decisions, not to maximize sales at the expense of accuracy.' },
   { h: 'Privacy & Security', p: 'We take customer privacy seriously. We do not sell customer data. Your age verification information is processed by a compliant third-party provider and not stored on our servers. Payment information is handled through secure, encrypted processors.' },
 ];

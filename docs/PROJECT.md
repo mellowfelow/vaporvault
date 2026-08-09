@@ -35,13 +35,25 @@ Carried forward unchanged from the old build (client confirmed "same as before" 
 - No fabricated brand facts — the client never supplied founding year, HQ, or named individuals, so none appear
   on the site
 
-## Brands carried forward (12)
-Geek Bar, RAZ Vape, Lost Mary, Flum, Breeze Smoke, Fifty Bar, Tyson 2.0, Vuse (FDA auth), NJOY (FDA auth), SMOK,
-Vaporesso, HQD — 17 products total across disposables and pod systems.
+## Brands (18)
+Carried forward from the old build (12): Geek Bar, RAZ Vape, Lost Mary, Flum, Breeze Smoke, Fifty Bar, Tyson 2.0,
+Vuse (FDA auth), NJOY (FDA auth), SMOK, Vaporesso, HQD — 17 products total across disposables and pod systems.
 
-## Known asset gaps (carried from the old build)
-- No hero photo for Vuse (`brand-vuse.jpg` was never supplied) — falls back to the generic hero image
-- No logo files for SMOK or Vaporesso — brand tiles fall back to an emoji glyph instead of a broken image
+Added later, logo-only (6): Nexa, Elf Bar, Off Stamp, Fume, Foger, UT Vape — client supplied only a logo image
+for each, no product specs (device names/puff counts/prices/flavors) or verified PMTA status. Per Rule 5 (never
+fabricate brand facts), these ship with a minimal factual description, default `pmta: 'pending'`, and zero
+products — the brand page shows "no products currently listed" honestly rather than inventing SKUs. Add real
+product entries to `PRODUCTS` in `src/config/site.js` when the client supplies them.
+
+Note: the old build's About page stated "we do not carry Elf Bar/EB Create products due to their lack of FDA
+authorization." The client explicitly asked to add Elf Bar and had that sentence removed — confirmed decision,
+not an oversight.
+
+## Known asset gaps
+- No hero photo for Vuse or the 6 logo-only brands — all fall back to the generic hero image (`hero-1.jpg`)
+- Raw client-supplied logo uploads live in `assets/brand-logos/` (gitignored, not deployed). Normalized into
+  uniform `public/images/logo-*.png` files via `scripts/normalize-logos.mjs` (trims whitespace, centers on a
+  400×200 canvas) — re-run that script if new/updated logos are supplied.
 
 ## Content
 4 blog posts carried forward verbatim from the old build (best-disposable-vapes-2026, buy-disposable-vapes-online,

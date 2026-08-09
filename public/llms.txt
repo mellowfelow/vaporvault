@@ -26,6 +26,12 @@ VaporVault is a 21+ only, PACT Act-compliant online vape retailer. Minimum order
 - [SMOK](https://DOMAIN.com/brands/smok/): PMTA pending
 - [Vaporesso](https://DOMAIN.com/brands/vaporesso/): PMTA pending
 - [HQD](https://DOMAIN.com/brands/hqd/): PMTA pending
+- [Nexa](https://DOMAIN.com/brands/nexa/): PMTA pending
+- [Elf Bar](https://DOMAIN.com/brands/elf-bar/): PMTA pending
+- [Off Stamp](https://DOMAIN.com/brands/off-stamp/): PMTA pending
+- [Fume](https://DOMAIN.com/brands/fume/): PMTA pending
+- [Foger](https://DOMAIN.com/brands/foger/): PMTA pending
+- [UT Vape](https://DOMAIN.com/brands/ut-vape/): PMTA pending
 
 ## Key Pages
 
