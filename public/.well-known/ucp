@@ -1,0 +1,58 @@
+{
+  "ucp": "1.0",
+  "protocol_version": "1.0",
+  "spec": "https://ucp.dev/specification/overview/",
+  "schema": "https://ucp.dev/schema/v1.json",
+  "site": "https://DOMAIN.com",
+  "name": "VaporVault USA",
+  "description": "Premium US Vape Store",
+  "services": [
+    {
+      "id": "product-catalog",
+      "type": "catalog",
+      "url": "https://DOMAIN.com/shop/",
+      "description": "Full product catalog"
+    },
+    {
+      "id": "order",
+      "type": "commerce",
+      "url": "https://DOMAIN.com/checkout/",
+      "description": "Human-assisted checkout"
+    },
+    {
+      "id": "wholesale",
+      "type": "b2b",
+      "url": "https://DOMAIN.com/wholesale/",
+      "description": "Wholesale pricing and bulk ordering"
+    }
+  ],
+  "capabilities": [
+    "browse",
+    "inquiry",
+    "wholesale",
+    "content"
+  ],
+  "endpoints": {
+    "catalog": "https://DOMAIN.com/shop/",
+    "contact": "https://DOMAIN.com/contact/",
+    "agent_skills": "https://DOMAIN.com/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://DOMAIN.com/.well-known/mcp/server-card.json",
+    "api_catalog": "https://DOMAIN.com/.well-known/api-catalog",
+    "llms_txt": "https://DOMAIN.com/llms.txt"
+  },
+  "currency": "USD",
+  "minimum_order_usd": 50,
+  "payment_methods": [
+    "crypto-BTC",
+    "crypto-ETH",
+    "crypto-LTC",
+    "cash-app",
+    "apple-pay",
+    "chime"
+  ],
+  "legal": {
+    "age_restriction": "21+",
+    "product_type": "Vaping / nicotine products",
+    "compliance": "PACT Act compliant"
+  }
+}

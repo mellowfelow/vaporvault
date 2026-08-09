@@ -1,0 +1,43 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "0.1.0"
+  },
+  "name": "VaporVault USA",
+  "description": "Premium US Vape Store",
+  "api_base_url": "https://DOMAIN.com",
+  "homepage": "https://DOMAIN.com",
+  "transports": [
+    "https"
+  ],
+  "capabilities": {
+    "services": [
+      "product-catalog",
+      "wholesale",
+      "blog",
+      "faq"
+    ],
+    "ordering": "human-assisted-checkout",
+    "payment_methods": [
+      "crypto-BTC",
+      "crypto-ETH",
+      "crypto-LTC",
+      "cash-app",
+      "apple-pay",
+      "chime"
+    ],
+    "currency": "USD",
+    "minimum_order_usd": 50,
+    "free_shipping_threshold_usd": 100
+  },
+  "contact": {
+    "email": "orders@vaporvaultusa.com"
+  },
+  "legal": {
+    "age_restriction": "21+",
+    "region": "US",
+    "ships_to": "United States (excluding restricted states)",
+    "product_type": "Vaping / nicotine products",
+    "compliance": "PACT Act compliant"
+  }
+}

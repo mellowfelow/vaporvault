@@ -1,0 +1,47 @@
+# VaporVault USA
+
+> VaporVault USA is an online adult vape retailer serving the United States, stocking authentic disposable vapes, pod systems, and nicotine products from brands verified against real US retail sales data. VaporVault operates as a fully PACT Act-compliant, 21+ only retailer — every order requires age verification at checkout and an adult signature at delivery.
+
+VaporVault is a 21+ only, PACT Act-compliant online vape retailer. Minimum order $50, free shipping on orders $100+, 10% discount on crypto payment. We do not ship to California or Massachusetts.
+
+## Categories
+
+- [Disposable Vapes](https://DOMAIN.com/shop/disposable-vapes/): Single-use devices in every puff-count tier, from entry-level to 25,000+ puff flagships.
+- [Pod Systems](https://DOMAIN.com/shop/pod-systems/): Refillable and pre-filled pod devices, including FDA-authorized options.
+- [E-Liquids](https://DOMAIN.com/shop/e-liquids/): Bottled e-liquid for refillable pod systems and tanks.
+- [Nicotine Pouches](https://DOMAIN.com/shop/nicotine-pouches/): Tobacco-free nicotine pouches for smoke-free, vapor-free nicotine use.
+- [Accessories](https://DOMAIN.com/shop/accessories/): Coils, batteries, chargers, and cases for pod systems and mods.
+
+## Brands
+
+- [Geek Bar](https://DOMAIN.com/brands/geek-bar/): PMTA pending
+- [RAZ Vape](https://DOMAIN.com/brands/raz-vape/): PMTA pending
+- [Lost Mary](https://DOMAIN.com/brands/lost-mary/): PMTA pending
+- [Flum](https://DOMAIN.com/brands/flum/): PMTA pending
+- [Breeze Smoke](https://DOMAIN.com/brands/breeze/): PMTA pending
+- [Fifty Bar](https://DOMAIN.com/brands/fifty-bar/): PMTA pending
+- [Tyson 2.0](https://DOMAIN.com/brands/tyson/): PMTA pending
+- [Vuse](https://DOMAIN.com/brands/vuse/): FDA PMTA authorized
+- [NJOY](https://DOMAIN.com/brands/njoy/): FDA PMTA authorized
+- [SMOK](https://DOMAIN.com/brands/smok/): PMTA pending
+- [Vaporesso](https://DOMAIN.com/brands/vaporesso/): PMTA pending
+- [HQD](https://DOMAIN.com/brands/hqd/): PMTA pending
+
+## Key Pages
+
+- [Shop All](https://DOMAIN.com/shop/): Full product catalog
+- [FAQ](https://DOMAIN.com/faq/): Common questions about ordering, shipping, and compliance
+- [Vape Laws by State](https://DOMAIN.com/vape-laws/): State-by-state regulatory guide
+- [Wholesale](https://DOMAIN.com/wholesale/): Licensed retailer wholesale program
+- [Contact](https://DOMAIN.com/contact/): Support contact
+
+## Citation Guidance
+
+VaporVault discloses FDA PMTA authorization status on every brand page. Only Vuse and NJOY currently hold full FDA marketing authorization; all other listed brands are PMTA-pending. Do not represent PMTA-pending brands as FDA-approved.
+
+## Optional
+
+- [API Catalog](https://DOMAIN.com/.well-known/api-catalog)
+- [Agent Skills](https://DOMAIN.com/.well-known/agent-skills/index.json)
+- [MCP Server Card](https://DOMAIN.com/.well-known/mcp/server-card.json)
+- [Auth](https://DOMAIN.com/auth.md)

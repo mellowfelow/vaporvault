@@ -1,0 +1,55 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card/v1.json",
+  "serverInfo": {
+    "name": "VaporVault USA",
+    "version": "1.0.0",
+    "description": "Premium US Vape Store",
+    "homepage": "https://DOMAIN.com",
+    "contact": {
+      "email": "orders@vaporvaultusa.com"
+    }
+  },
+  "transport": {
+    "type": "none",
+    "note": "This deployment does not expose a live MCP endpoint. All resources below are HTML pages."
+  },
+  "capabilities": {
+    "resources": [
+      {
+        "name": "product-catalog",
+        "description": "Full product catalog",
+        "uri": "https://DOMAIN.com/shop/"
+      },
+      {
+        "name": "wholesale-info",
+        "description": "Wholesale pricing and ordering",
+        "uri": "https://DOMAIN.com/wholesale/"
+      },
+      {
+        "name": "blog",
+        "description": "Educational content",
+        "uri": "https://DOMAIN.com/blog/"
+      }
+    ],
+    "commerce": {
+      "ordering": "human-assisted-checkout",
+      "payment": [
+        "crypto-BTC",
+        "crypto-ETH",
+        "crypto-LTC",
+        "cash-app",
+        "apple-pay",
+        "chime"
+      ],
+      "currency": "USD",
+      "minimumOrder": 50,
+      "freeShipping": 100,
+      "shipsTo": "United States (excluding restricted states)"
+    }
+  },
+  "legal": {
+    "ageRestriction": "21+",
+    "productType": "Vaping / nicotine products",
+    "compliance": "PACT Act compliant"
+  }
+}

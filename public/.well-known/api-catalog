@@ -1,0 +1,23 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://DOMAIN.com/",
+      "https://www.iana.org/assignments/link-relations/service-doc": [
+        {
+          "href": "https://DOMAIN.com/faq/"
+        }
+      ],
+      "title": "VaporVault USA — Premium US Vape Store"
+    },
+    {
+      "anchor": "https://DOMAIN.com/shop/",
+      "type": "text/html",
+      "title": "VaporVault USA Product Catalog"
+    },
+    {
+      "anchor": "https://DOMAIN.com/wholesale/",
+      "type": "text/html",
+      "title": "VaporVault USA Wholesale"
+    }
+  ]
+}

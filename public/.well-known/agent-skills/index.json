@@ -1,0 +1,43 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "name": "VaporVault USA",
+  "url": "https://DOMAIN.com",
+  "description": "Premium US Vape Store",
+  "skills": [
+    {
+      "name": "browse-products",
+      "type": "navigation",
+      "description": "Browse the full disposable vape and pod system catalog by category",
+      "url": "https://DOMAIN.com/shop/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "browse-brands",
+      "type": "navigation",
+      "description": "Browse brands with FDA PMTA authorization status disclosed",
+      "url": "https://DOMAIN.com/brands/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wholesale-inquiry",
+      "type": "commerce",
+      "description": "Wholesale pricing tiers and bulk ordering for licensed retailers",
+      "url": "https://DOMAIN.com/wholesale/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "product-education",
+      "type": "content",
+      "description": "Educational blog content about vaping products, devices, and regulations",
+      "url": "https://DOMAIN.com/blog/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "contact",
+      "type": "support",
+      "description": "Contact for product questions, orders, or wholesale inquiries",
+      "url": "https://DOMAIN.com/contact/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
