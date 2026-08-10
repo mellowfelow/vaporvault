@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { RULES, PUFF_RANGES, BRANDS, POSTS, getFeatured } from '@/config/site';
+import { RULES, PUFF_RANGES, BRANDS, POSTS, getFeatured, getBrand, puffsLabel } from '@/config/site';
 import ProductCard from '@/components/ProductCard';
 import BrandTile from '@/components/BrandTile';
 import NewsletterForm from '@/components/NewsletterForm';
@@ -38,18 +38,25 @@ export default function HomePage() {
             </div>
           </div>
           <div className="hero-card-stack">
-            <Link href="/brands/geek-bar/" className="hero-mini-card">
-              <div className="hmc-emoji">⚡</div><div className="hmc-brand">Geek Bar</div><div className="hmc-name">Pulse X 25000</div><div className="hmc-puffs">25,000 puffs</div><div className="hmc-price">$24.99</div>
-            </Link>
-            <Link href="/brands/raz-vape/" className="hero-mini-card">
-              <div className="hmc-emoji">🔷</div><div className="hmc-brand">RAZ Vape</div><div className="hmc-name">DC25000</div><div className="hmc-puffs">25,000 puffs</div><div className="hmc-price">$26.99</div>
-            </Link>
-            <Link href="/brands/fifty-bar/" className="hero-mini-card">
-              <div className="hmc-emoji">🇺🇸</div><div className="hmc-brand">Fifty Bar</div><div className="hmc-name">20K — USA Made</div><div className="hmc-puffs">20,000 puffs</div><div className="hmc-price">$24.99</div>
-            </Link>
-            <Link href="/brands/lost-mary/" className="hero-mini-card">
-              <div className="hmc-emoji">🌸</div><div className="hmc-brand">Lost Mary</div><div className="hmc-name">MO5000</div><div className="hmc-puffs">5,000 puffs</div><div className="hmc-price">$14.99</div>
-            </Link>
+            {featured.slice(0, 4).map((p) => {
+              const b = getBrand(p.brand);
+              return (
+                <Link key={p.id} href={`/product/${p.id}/`} className="hero-mini-card">
+                  <div className={`hmc-img ${p.image ? 'hmc-img-photo' : ''}`}>
+                    {p.badge && <span className="hmc-badge">{p.badge}</span>}
+                    {p.image ? (
+                      <Image src={p.image} alt={p.name} fill sizes="120px" style={{ objectFit: 'contain', padding: 6 }} />
+                    ) : (
+                      <span className="hmc-emoji" aria-hidden="true">{p.emoji}</span>
+                    )}
+                  </div>
+                  <div className="hmc-brand">{b?.label}</div>
+                  <div className="hmc-name">{p.name}</div>
+                  <div className="hmc-puffs">{puffsLabel(p.puffs)}</div>
+                  <div className="hmc-price">${p.price.toFixed(2)}</div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
