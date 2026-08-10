@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FORMS, PAYMENT_METHODS, RULES, SITE, getBrand, getById } from '@/config/site';
+import { FORMS, PAYMENT_METHODS, RULES, SITE, getBrand, getById, puffsLabel } from '@/config/site';
 import { useCart } from '@/lib/CartContext';
 import { submitWeb3Form } from '@/lib/forms';
 import { showToast } from '@/lib/toast';
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
                       <div style={{ flex: 1 }}>
                         <p style={{ fontFamily: 'var(--fc)', fontSize: 10, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--gold-a)' }}>{b?.label}</p>
                         <p style={{ fontFamily: 'var(--fc)', fontSize: 13, fontWeight: 700, color: 'var(--white)' }}>{p.name}</p>
-                        <p style={{ fontSize: 11, color: 'var(--silver)' }}>{p.puffs} puffs · Qty: {item.qty}</p>
+                        <p style={{ fontSize: 11, color: 'var(--silver)' }}>{puffsLabel(p.puffs)} · Qty: {item.qty}</p>
                       </div>
                       <span style={{ fontFamily: 'var(--fc)', fontSize: 15, fontWeight: 700, color: 'var(--white)' }}>${(p.price * item.qty).toFixed(2)}</span>
                     </div>

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBrand } from '@/config/site';
+import { getBrand, puffsLabel } from '@/config/site';
 import { useCart } from '@/lib/CartContext';
 import { showToast } from '@/lib/toast';
 
@@ -42,7 +42,7 @@ export default function ProductCard({ product }) {
         <Link href={href} style={{ textDecoration: 'none' }}>
           <h3 className="pc-name">{product.name}</h3>
         </Link>
-        <div className="pc-puffs">⚡ {product.puffs} puffs</div>
+        <div className="pc-puffs">⚡ {puffsLabel(product.puffs)}</div>
         <p className="pc-desc">{product.desc.slice(0, 90)}…</p>
         <div className="pc-qty-row">
           <button type="button" className="qty-btn" aria-label="Decrease quantity" onClick={() => setQty((q) => Math.max(1, q - 1))}>−</button>

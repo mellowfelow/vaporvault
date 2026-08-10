@@ -11,8 +11,9 @@ export function generateStaticParams() {
   return BRANDS.map((b) => ({ brand: b.id }));
 }
 
-export function generateMetadata({ params }) {
-  const brand = BRANDS.find((b) => b.id === params.brand);
+export async function generateMetadata({ params }) {
+  const { brand: brandId } = await params;
+  const brand = BRANDS.find((b) => b.id === brandId);
   if (!brand) return {};
   return {
     title: `${brand.label} Vapes`,
@@ -23,8 +24,9 @@ export function generateMetadata({ params }) {
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
-export default function BrandPage({ params }) {
-  const brand = BRANDS.find((b) => b.id === params.brand);
+export default async function BrandPage({ params }) {
+  const { brand: brandId } = await params;
+  const brand = BRANDS.find((b) => b.id === brandId);
   if (!brand) notFound();
   const products = getByBrand(brand.id);
 

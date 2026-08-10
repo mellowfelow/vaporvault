@@ -50,6 +50,34 @@ Note: the old build's About page stated "we do not carry Elf Bar/EB Create produ
 authorization." The client explicitly asked to add Elf Bar and had that sentence removed — confirmed decision,
 not an oversight.
 
+## Batch 2 — Breeze, Flum, Geek Bar, RAZ, Tyson, UT Bar, Lost Mary (301 real SKUs)
+Same treatment as Fifty Bar, applied to 7 more brands: client supplied ~300 real product photos
+across ~24 device lines in `product images/` (gitignored). Normalized via
+`scripts/normalize-batch2-products.mjs` into `public/images/products/<brand>/`.
+
+- **Existing device lines** (Geek Bar Pulse 15000/Pulse X 25000, RAZ TN9000/DC25000, Tyson
+  Heavyweight 7000, Flum Pebble 6000, Breeze Pro) — kept their already-established specs, just
+  exploded from one generic placeholder SKU into real per-flavor products with real photos.
+- **~17 brand-new device lines** (RAZ CA6000/RYL Classic 35K/RX50K, Tyson Round 2 7500/Iron Mike
+  15000/Legend 30K/Lightweight 6000, Flum Float X 10K/Gio/Mello, UT Bar 6000/Clear Tank 50K/Pro
+  25000, Lost Mary Viz 55K/MT15000 Turbo/MT35000 Turbo/Nera pods) — specs (puffs, nicotine, mL,
+  battery, coil) verified via web search against manufacturer/retailer listings before adding;
+  price is VaporVault's own retail decision (consistent with the existing per-tier pricing curve
+  already used sitewide), not a claimed manufacturer fact.
+- **UT Bar is made by Flum** — confirmed during research ("Flum UT Bar Clear Tank 50K", "Flum UT
+  Bar 6000"). Kept under the existing `ut-vape` brand entry (the client's own brand tile/logo),
+  `partner: 'Flum'` set on those products.
+- **Old unverified Lost Mary MO5000/OS5000 placeholders were removed**, replaced by the real
+  photographed Viz/MT/Nera lines — same policy as the Fifty Bar replacement.
+- **One folder was a misfile, not used**: `flum/flum ut bar/` (12 images) is a subset of the same
+  UT Bar 6000 flavors already fully covered by `ut bar/utbar 6000/` (21 images) — skipped rather
+  than inventing a nonexistent "Flum × UT Bar" collab.
+- **Descriptions are template-generated** (topical, keyed off each flavor's own name — e.g. "Ice"
+  vs "Tropical" vs "Dessert"), not hand-written per flavor like Fifty Bar. Proportionate to the
+  ~4x larger volume; still original wording, not copied from any source.
+- **Crude flavor names sanitized**: a few real flavor names use a censored profanity wordplay
+  ("Fcuking Fab") — renamed to "Fab" / "Orange Fab" / "Watermelon Fab" for a professional site.
+
 ## Fifty Bar — real product data (sourced from thefiftybar.org, 2026)
 Fifty Bar was upgraded from a single placeholder SKU to full real data: 78 individual flavor products across all
 7 official collections (Original, White, Black, Fifty Bar × Fruitia 20K, Fifty Bar × Humble, Fifty Bar × Hidden

@@ -152,7 +152,7 @@ export const BRANDS = [
     id: 'ut-vape', label: 'UT Vape', emoji: '💨', pmta: 'pending', rank: null,
     badge: '',
     heroImg: '/images/hero-1.jpg', logo: '/images/logo-ut-vape.png',
-    about: 'UT Vape is a disposable vape brand carried at VaporVault. Full product listings for UT Vape are coming soon.',
+    about: "UT Vape's flagship disposable, the UT Bar, is manufactured by Flum — the same team behind the Flum Pebble and Flum Mello lines — across three device tiers: the entry-level UT Bar 6000, the clear-tank UT Bar Clear Tank 50K, and the dual-mesh UT Bar Pro 25000. Each tier carries its own flavor lineup, from candy and fruit blends to icy menthol profiles.",
   },
 ];
 
@@ -311,18 +311,134 @@ const FIFTY_BAR_PRODUCTS = FIFTY_BAR_COLLECTIONS.flatMap((col) => {
   });
 });
 
+/* ── Batch 2 — Breeze, Flum, Geek Bar, RAZ, Tyson, UT Bar, Lost Mary ──
+   Specs sourced from manufacturer/retailer listings (search-verified). Descriptions are
+   generated from a topical template keyed off each flavor's own name (not copied from any
+   source) — pragmatic given the volume (~300 SKUs) versus the hand-written Fifty Bar batch. */
+const B2_TIERS = {
+  'breeze-pro': { puffs: '2,000', price: 11.99, nic: '50mg', ml: '6ml', cat: 'under-5000' },
+  'flum-pebble': { puffs: '6,000', price: 14.99, nic: '50mg', ml: '14ml', cat: '5000-10000' },
+  'flum-float-x-10k': { puffs: '10,000', price: 17.99, nic: '5% (50mg)', ml: '8mL', coil: 'Dual Mesh Coil', cat: 'under-20000' },
+  'flum-gio': { puffs: '3,000', price: 12.99, nic: '5% (50mg)', ml: '8mL', battery: '800mAh', cat: 'under-5000' },
+  'flum-mello': { puffs: '20,000', price: 21.99, nic: '5% (50mg)', ml: '15mL', battery: '650mAh', coil: 'Hybrid 2.0 Mesh Coil', cat: '20000-plus' },
+  'geek-bar-pulse': { puffs: '15,000', price: 19.99, nic: '50mg', ml: '16ml', cat: 'under-20000' },
+  'geek-bar-pulse-x': { puffs: '25,000', price: 24.99, nic: '50mg', ml: '22ml', cat: '20000-plus' },
+  'geek-bar-pulse-2': { puffs: '25,000', price: 24.99, nic: '5% (50mg)', battery: '800mAh', coil: 'Dual Mesh Coil', cat: '20000-plus' },
+  'geek-bar-pulse-x-2': { puffs: '50,000', price: 32.99, nic: '5% (50mg)', ml: '18mL', battery: '1000mAh', coil: 'Dual Mesh Coil', cat: '20000-plus' },
+  'raz-tn9000': { puffs: '9,000', price: 16.99, nic: '50mg', ml: '10ml', cat: '5000-10000' },
+  'raz-dc25000': { puffs: '25,000', price: 26.99, nic: '50mg', ml: '22ml', cat: '20000-plus' },
+  'raz-ca6000': { puffs: '6,000', price: 15.99, nic: '5% (50mg)', ml: '10mL', battery: '650mAh', coil: 'Mesh Coil', cat: '5000-10000' },
+  'raz-ryl-classic-35k': { puffs: '35,000', price: 29.99, nic: '5% (50mg)', ml: '16.5mL', battery: '820mAh', coil: 'Mesh Coil', cat: '20000-plus' },
+  'raz-rx50k': { puffs: '50,000', price: 32.99, nic: '5% (50mg)', ml: '19mL', battery: '800mAh', coil: 'Mesh Coil', airflow: 'Adjustable', cat: '20000-plus' },
+  'tyson-heavyweight': { puffs: '7,000', price: 16.99, nic: '50mg', ml: '12ml', cat: '5000-10000' },
+  'tyson-round2-7500': { puffs: '7,500', price: 16.99, nic: '5% (50mg)', ml: '16mL', battery: '650mAh', coil: 'Mesh Coil', cat: '5000-10000' },
+  'tyson-iron-mike-15000': { puffs: '15,000', price: 19.99, nic: '5% (50mg)', ml: '14mL', battery: '600mAh', coil: 'Mesh Coil', cat: 'under-20000' },
+  'tyson-legend-30k': { puffs: '30,000', price: 27.99, nic: '5% (50mg)', ml: '16mL', battery: '850mAh', coil: 'Triple Mesh Coil', cat: '20000-plus' },
+  'tyson-lightweight-6000': { puffs: '6,000 (3 × 2,000)', price: 16.99, nic: '5% (50mg)', ml: '4mL × 3', battery: '550mAh (non-rechargeable)', coil: 'Mesh Coil', cat: '5000-10000' },
+  'ut-vape-clear-tank-50k': { puffs: '50,000', price: 32.99, nic: '5% (50mg)', ml: '17mL', battery: '760mAh', coil: 'Dual Mesh Coil', cat: '20000-plus' },
+  'ut-vape-ut-bar-6000': { puffs: '6,000', price: 15.99, nic: '5% (50mg)', ml: '10mL', battery: '550mAh', coil: 'Mesh Coil', cat: '5000-10000' },
+  'ut-vape-pro-25000': { puffs: '25,000', price: 24.99, nic: '5% (50mg)', ml: '15.5mL', battery: '760mAh', coil: 'Dual Mesh Coil', cat: '20000-plus' },
+  'lost-mary-viz-55k': { puffs: '55,000', price: 34.99, nic: '5% (50mg)', ml: '16.7mL', battery: '850mAh', coil: 'Dual Mesh Coil', cat: '20000-plus' },
+  'lost-mary-mt15000-turbo': { puffs: '15,000', price: 19.99, nic: '5% (50mg)', ml: '16mL', battery: '600mAh', coil: 'Dual Mesh Coil', cat: 'under-20000' },
+  'lost-mary-mt35000-turbo': { puffs: '35,000', price: 29.99, nic: '5% (50mg)', ml: '18mL', battery: '1000mAh', coil: 'Dual Mesh Coil', cat: '20000-plus' },
+  'lost-mary-nera-pods': { puffs: '35,000 per pod', price: 24.99, nic: '5% (50mg)', ml: '12mL per pod', battery: '800mAh', coil: 'Mesh Coil', cat: 'pod-system' },
+};
+
+const B2_DESC_TEMPLATES = {
+  ice: [(n) => `${n} — a chilled, icy take on the profile, built for a crisp all-day draw.`, (n) => `${n} — frosty and refreshing, with a cold finish that lingers.`],
+  mint: [(n) => `${n} — a clean, cooling mint profile with a crisp finish.`, (n) => `${n} — smooth minty freshness from first puff to last.`],
+  tobacco: [(n) => `${n} — a smooth, familiar tobacco profile for adult smokers.`],
+  berry: [(n) => `${n} — a bold berry blend with a sweet-tart finish.`, (n) => `${n} — layered berry flavor, sweet with a tangy edge.`],
+  melon: [(n) => `${n} — juicy and sweet, refreshing from first puff to last.`],
+  tropical: [(n) => `${n} — a bright tropical fruit blend with real depth.`, (n) => `${n} — sun-ripened tropical fruit, sweet and smooth.`],
+  citrus: [(n) => `${n} — a zesty citrus profile with a tangy edge.`],
+  candy: [(n) => `${n} — nostalgic candy-shop sweetness in every puff.`],
+  dessert: [(n) => `${n} — a rich, dessert-inspired profile, smooth and indulgent.`],
+  default: [(n, s) => `${n} — part of the ${s} lineup, sourced direct for guaranteed authenticity.`],
+};
+function b2Classify(name) {
+  const n = name.toLowerCase();
+  if (/ice|icy|frozen|frost/.test(n)) return 'ice';
+  if (/mint|menthol/.test(n)) return 'mint';
+  if (/tobacco/.test(n)) return 'tobacco';
+  if (/berry|razz|grape/.test(n)) return 'berry';
+  if (/melon/.test(n)) return 'melon';
+  if (/mango|peach|pineapple|guava|tropical|coconut|passion|hawaiian|piña|pina|colada|banana/.test(n)) return 'tropical';
+  if (/lemon|lime|citrus|orange/.test(n)) return 'citrus';
+  if (/gummy|candy|pop|bubblegum|jam|hubba|bull/.test(n)) return 'candy';
+  if (/cake|custard|cream|milk|cereal|donut|dessert|strudel/.test(n)) return 'dessert';
+  return 'default';
+}
+function b2Desc(name, seriesLabel) {
+  const templates = B2_DESC_TEMPLATES[b2Classify(name)];
+  const hash = Math.abs([...name].reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0));
+  return templates[hash % templates.length](name, seriesLabel);
+}
+const b2Slug = fbSlug; // same NFD-normalizing slugify as Fifty Bar
+
+// [brand, brandLabel, tierKey, seriesId, seriesLabel, flavorNames[]]
+const B2_COLLECTIONS = [
+  ['breeze', 'Breeze Pro', 'breeze-pro', 'pro', 'Breeze Pro', ['Banana Mint', 'Blue Raspberry', 'Blueberry Banana', 'Blueberry Mint', 'Blueberry Watermelon', 'Cherry Lemon', 'Citrus', 'Grape', 'Lemon Mint', 'Menthol', 'Mint', 'Orange Mango Watermelon', 'Pineapple Coconut', 'Pomegranate Berry Mint', 'Raspberry Lemon', 'Spearmint', 'Strawberry Banana', 'Strawberry Peach Mint', 'Tobacco']],
+  ['flum', 'Flum Pebble', 'flum-pebble', 'pebble', 'Flum Pebble', ['Aloe Watermelon Splash', 'Berrymelon Icy', 'Blanco Grapefruit', 'Blue Razz Icy', 'Blueberry Mint', 'Cherry Berry', 'Clear', 'Luscious Watermelon', 'Menthol', 'Mighty Grapefruit', 'Peach Orange', 'Pineapple Coconut', "Sour X'Max", 'Straw Guava', 'Strawberry Coconut', 'Strawmelon Apple', 'Strawmelon', 'Summer Glacier', 'Tobacco', 'White Gummy']],
+  ['flum', 'Flum Float X 10K', 'flum-float-x-10k', 'float-x-10k', 'Flum Float X 10K', ['Banana', 'Clear', 'Clear Oolong', 'Crisp Green', 'Green Grape', 'Lemon Pineapple', 'Lush Ice', 'Peach Ice', 'Pink Guava', 'Taro Ice']],
+  ['flum', 'Flum Gio', 'flum-gio', 'gio', 'Flum Gio', ['Berry Fusion', 'Coffee Pump', 'Juicy Apple', 'Litchi Ice', 'Power Bull', 'Tobacco Cream', 'Tropical Punch']],
+  ['flum', 'Flum Mello', 'flum-mello', 'mello', 'Flum Mello', ['Blue Razz Icy', 'Cool Mint', 'Midnight Barcelona', 'Peach Icy', 'Rome', 'Sour Apple Icy', 'Strawberry Blast', 'Summer Deluxe', 'Sunshine Cherry', 'Watermelon Icy']],
+  ['geek-bar', 'Geek Bar Pulse 15000', 'geek-bar-pulse', 'pulse', 'Geek Bar Pulse 15000', ['Banana Ice', 'Drop Sour Savers', 'Frozen Blackberry Fab', 'Frozen Cherry Apple', 'Frozen Pina Colada', 'Frozen Strawberry', 'Frozen Watermelon', 'Frozen White Grape', 'Orange Mint Saver', 'Peach Lemonade', 'Pineapple Savers', 'Punch', 'Raspberry Watermelon', 'Strawberry Banana', 'Strawberry Kiwi', 'Strawberry Savers', 'Wild Berry Savers']],
+  ['geek-bar', 'Geek Bar Pulse X 25000', 'geek-bar-pulse-x', 'pulse-x', 'Geek Bar Pulse X 25000', ['Blackberry Blueberry', 'Blueberry Jam', 'Cola Slush', 'Cool Mint', 'Dualicious', 'Miami Mint', 'Orange Fab', 'Orange Jam', 'Orange Mint', 'Peach Jam', 'Peach Perfect Slush', 'Pear of Thieves', 'Pink Berry Lemonade', 'Raspberry Jam', 'Sour Straws', 'Strawberry Dragon', 'Strawberry Jam', 'White Peach Raspberry']],
+  ['geek-bar', 'Geek Bar Pulse 2', 'geek-bar-pulse-2', 'pulse-2', 'Geek Bar Pulse 2', ['Blue Razz Hubba', 'Grape Hubba', 'Lemon Hubba', 'Strawberry Watermelon Hubba', 'White Peach Hubba']],
+  ['geek-bar', 'Geek Bar Pulse X 2 50K Bull Edition', 'geek-bar-pulse-x-2', 'pulse-x-2', 'Geek Bar Pulse X 2 50K Bull Edition', ['Blue Razz Bull', 'Coco Berry Bull', 'Peach Bull', 'Strawberry Bull', 'Watermelon Bull']],
+  ['raz-vape', 'RAZ TN9000', 'raz-tn9000', 'tn9000', 'RAZ TN9000', ['Black Cherry Peach', 'Blue Raz B-Pop', 'Cactus Jack', 'Clear', 'Graham Twist', 'Grape Ice', 'Mango Colada', 'Orange Raspberry', 'Sour Mango Pineapple', 'Strawberry Ice', 'Strawberry Orange Mango', 'Tiffany', 'Triple Berry Ice', 'Tropical Storm', 'Violet', 'Watermelon Ice', 'White Gummy Grape']],
+  ['raz-vape', 'RAZ DC25000', 'raz-dc25000', 'dc25000', 'RAZ DC25000', ["Bangin' Sour Berries", 'Blue Raz Gush', 'Blueberry Watermelon', 'Fire & Ice', 'Frozen Dragon Fruit Lemon', 'Hawaiian Punch', 'Miami Mint', "Pink Lemonade Minty O's", 'Sour Apple Ice', 'Sour Raspberry Punch', 'Strawberry Burst', 'Triple Berry Gush', 'Triple Berry Punch']],
+  ['raz-vape', 'RAZ CA6000', 'raz-ca6000', 'ca6000', 'RAZ CA6000', ['Alaskan Mint', 'Crushed Berries', 'Dragon Fruit Lemonade', 'Frozen Strawberry', 'Georgia Peach', 'Hawaii Sunset', 'Peach Pear', 'Spearmint', 'Strawberry Kiwi', 'Watermelon Ice']],
+  ['raz-vape', 'RAZ RYL Classic 35K', 'raz-ryl-classic-35k', 'ryl-classic-35k', 'RAZ RYL Classic 35K', ['Blue Raz Ice', 'Miami Mint', 'Orange Mango', 'Peach Passionfruit', 'Rainbow', 'Raspberry Watermelon', 'Sour Apple Ice', 'Sour Strawberry', 'Triple Berry', 'Watermelon Ice', 'White Yummy Ice']],
+  ['raz-vape', 'RAZ RX50K', 'raz-rx50k', 'rx50k', 'RAZ RX50K', ['Code Blue', 'Code Green', 'Code Pink', 'Code Red', 'Lemon Batch', 'Triple Berry Batch', 'Watermelon Batch', 'White Peach Batch']],
+  ['tyson', 'Tyson 2.0 Heavyweight', 'tyson-heavyweight', 'heavyweight', 'Tyson 2.0 Heavyweight', ['Mint Berry', 'Passion Punch', 'Peach Mango', 'Peach Watermelon', 'Strawberry Banana', 'Watermelon']],
+  ['tyson', 'Tyson 2.0 Round 2 7500', 'tyson-round2-7500', 'round2-7500', 'Tyson 2.0 Round 2 7500', ['Apple Melonberry', 'Lush Lime', 'Melonhead', 'Pineapple Melon', 'Watermelon']],
+  ['tyson', 'Tyson 2.0 Iron Mike 15000', 'tyson-iron-mike-15000', 'iron-mike-15000', 'Tyson 2.0 Iron Mike 15000', ['Cake', 'California Cherry', 'Peach Punch', 'Pineapple Melon', 'Pineapple Sour Berry']],
+  ['tyson', 'Tyson 2.0 Legend 30K', 'tyson-legend-30k', 'legend-30k', 'Tyson 2.0 Legend 30K', ['Apple Melonberry', 'B-Burst', 'Cool Mint', 'Miami Mint']],
+  ['tyson', 'Tyson 2.0 Lightweight 6000 (3-Pack)', 'tyson-lightweight-6000', 'lightweight-6000', 'Tyson 2.0 Lightweight 6000 (3-Pack)', ['Blue Razz', 'Frozen Blueberry', 'Grape Razz', 'Strawberry Banana', 'Watermelon']],
+  ['ut-vape', 'UT Bar 6000', 'ut-vape-ut-bar-6000', 'ut-bar-6000', 'UT Bar 6000', ['Aloe Mango Icy', 'Black Pink', 'Blue Razz Icy', 'Cali Blossom', 'Citrus Cake', 'Clear', 'Guava Sunrise', 'Honey Peach', 'Jewel Berry', 'Jungle Juice', 'Lone Star Cactus', 'Milky', 'Mt. Rainier', 'Naked', 'Peach Mango Watermelon', 'Purple Rain', 'Sakura Grape', 'Strawberry Banana', 'Strawberry Lemonade', 'Super Mint', 'Triple Berries Ice']],
+  ['ut-vape', 'UT Bar Clear Tank 50K', 'ut-vape-clear-tank-50k', 'clear-tank-50k', 'UT Bar Clear Tank 50K', ['Aloe Grape', 'Blue Razz Ice', 'Cherry Strawberry Gummy', 'Cola Ice', 'Frozen Watermelon', 'Green Apple Ice', 'Green Crisp Watermelon Icy', 'Icy Mint', 'Mango Peach', 'Mango Tango', 'Peach Ice', 'Peach Mango Watermelon', 'Raspberry Grape Guava', 'Slushy Lemon', 'Sour Straws', 'Strawberry Lemonade', 'Strawberry Red Fuji', 'White Gummy Strawberry', 'White Gummy']],
+  ['ut-vape', 'UT Bar Pro 25000', 'ut-vape-pro-25000', 'pro-25000', 'UT Bar Pro 25000', ['Blue Razz Icy', 'Cool Mint', 'Grape Pop Icy', 'Strawmelon Peach', 'Thai Mango Icy', 'Watermelon Blueberry', 'White Gummy', 'Tobacco Cream', 'Watermelon Icy']],
+  ['lost-mary', 'Lost Mary Viz 55K', 'lost-mary-viz-55k', 'viz-55k', 'Lost Mary Viz 55K', ['Baja Splash', 'Blackberry Chill', 'Blue Razz Ice', 'Cool Mint', 'Dragon Strawnana', 'Fab', 'Hawaiian Blast', 'Mexico Mango', 'Miami Mint', 'Nana Berries', 'Peach Berry', 'Raspberry Dragon Lime', 'Sour Apple Ice', 'Sour Strawberry Peach', 'Strawberry Kiwi', 'Tiger Drip', 'Watermelon Ice']],
+  ['lost-mary', 'Lost Mary MT15000 Turbo', 'lost-mary-mt15000-turbo', 'mt15000-turbo', 'Lost Mary MT15000 Turbo', ['Baja Splash', 'Banana Cake', 'Berry Burst', 'Blue Raspberry Lemon', 'Blue Razz Ice', 'Miami Mint', 'Peach+', 'Pineapple B-Burst', 'Raspberry Watermelon', 'Rocket Pop', 'Strawberry Banana', 'Strawberry Kiwi', 'Winter Mint']],
+  ['lost-mary', 'Lost Mary MT35000 Turbo', 'lost-mary-mt35000-turbo', 'mt35000-turbo', 'Lost Mary MT35000 Turbo', ['Black Razz Lemon', 'Classic Tobacco', 'Miami Mint', 'Mint Lemonade', 'Pink Lemonade+', 'Scary Berry+', 'Strawberry Kiwi+', 'Strawberry+', 'Summer Grape', 'Toasted Banana', 'Watermelon+', 'White Gami+', 'Winter Mint', 'Yellow Pixy']],
+  ['lost-mary', 'Lost Mary Nera Fullview Pods', 'lost-mary-nera-pods', 'nera-pods', 'Lost Mary Nera Fullview Pods', ['Black Mint', 'Blackberry Blueberry', 'Blue Carnival', 'Golden Berry', 'Lemon Pop', 'Pink Lemonade', 'Pomegranate Blast', 'Rocket Freeze', 'Scary Berry', 'Sour Apple Ice', 'Watermelon Fab', 'Watermelon Ice', 'Winter Mint']],
+];
+
+const BRAND_EMOJI = { breeze: '🌬️', flum: '💨', 'geek-bar': '⚡', 'raz-vape': '🔷', tyson: '🥊', 'ut-vape': '💨', 'lost-mary': '🌸' };
+
+const B2_PRODUCTS = B2_COLLECTIONS.flatMap(([brand, , tierKey, seriesId, seriesLabel, flavors]) => {
+  const spec = B2_TIERS[tierKey];
+  return flavors.map((name) => {
+    const imgSlug = `${seriesId}-${b2Slug(name)}`;
+    return {
+      id: `${brand}-${imgSlug}`,
+      brand,
+      name: `${seriesLabel} — ${name}`,
+      puffs: spec.puffs,
+      price: spec.price,
+      nic: spec.nic,
+      ml: spec.ml,
+      battery: spec.battery || null,
+      coil: spec.coil || null,
+      airflow: spec.airflow || null,
+      desc: b2Desc(name, seriesLabel),
+      flavors: [name],
+      badge: '',
+      cat: spec.cat,
+      emoji: BRAND_EMOJI[brand] || '💨',
+      image: `/images/products/${brand}/${imgSlug}.webp`,
+      series: seriesLabel,
+      partner: brand === 'ut-vape' ? 'Flum' : null,
+    };
+  });
+});
+
 export const PRODUCTS = [
-  { id: 'geek-bar-pulse-15000', brand: 'geek-bar', name: 'Geek Bar Pulse 15000', puffs: '15,000', price: 19.99, nic: '50mg', ml: '16ml', desc: 'Dual Mesh Coil, smart display screen, adjustable power. The gold standard in US disposables.', flavors: ['Strawberry Mango', 'Watermelon Ice', 'Blue Razz Ice', 'Tropical Rainbow Blast', 'Miami Mint', 'Sour Apple Ice'], badge: 'Best Seller', cat: 'under-20000', emoji: '⚡' },
-  { id: 'geek-bar-pulse-x25000', brand: 'geek-bar', name: 'Geek Bar Pulse X 25000', puffs: '25,000', price: 24.99, nic: '50mg', ml: '22ml', desc: 'Ultra-high puff count with Pulse Mode for max vapor. HD digital display, Type-C fast charge.', flavors: ['Berry Trio Ice', 'Pineapple Mango', 'Miami Mint', 'Cherry Watermelon Ice', 'Sakura Grape'], badge: 'New', cat: '20000-plus', emoji: '⚡' },
-  { id: 'raz-tn9000', brand: 'raz-vape', name: 'RAZ TN9000', puffs: '9,000', price: 16.99, nic: '50mg', ml: '10ml', desc: 'HD touch screen, animated display, adjustable airflow. Premium flavor delivery engineered by food scientists.', flavors: ['Watermelon Ice', 'Blueberry Cotton Candy', 'Cherry Lemon', 'Strawberry Watermelon', 'Cool Mint', 'Peach Mango Pineapple'], badge: 'Hot', cat: '5000-10000', emoji: '🔷' },
-  { id: 'raz-dc25000', brand: 'raz-vape', name: 'RAZ DC25000', puffs: '25,000', price: 26.99, nic: '50mg', ml: '22ml', desc: 'Dual mesh coil, adjustable wattage 12–25W, HD screen showing battery, e-liquid, puff counter. Premium build.', flavors: ['Kiwi Passion Guava', 'Berry Burst Ice', 'Strawberry Kiwi Melon', 'Cuban Tobacco', 'Blue Razz Lemon', 'Peach Melon Ice'], badge: '', cat: '20000-plus', emoji: '🔷' },
-  { id: 'lost-mary-mo5000', brand: 'lost-mary', name: 'Lost Mary MO5000', puffs: '5,000', price: 14.99, nic: '50mg', ml: '13.5ml', desc: "Iconic slim form factor, mesh coil technology, 650mAh battery. Lost Mary's cult-favorite device.", flavors: ['Blueberry Ice', 'Watermelon', 'Strawberry Pear', 'Sour Watermelon', 'Mint', 'Peach Mango Watermelon'], badge: '', cat: '5000-10000', emoji: '🌸' },
-  { id: 'lost-mary-os5000', brand: 'lost-mary', name: 'Lost Mary OS5000', puffs: '5,000', price: 14.99, nic: '50mg', ml: '13ml', desc: 'Round pod design, dual mesh coil, USB-C rechargeable. Clean, satisfying flavor from first to last puff.', flavors: ['Lemon Mint', 'Cherry Lemon', 'Mad Blue', 'Juicy Peach', 'Black Mint'], badge: '', cat: '5000-10000', emoji: '🌸' },
-  { id: 'flum-pebble-6000', brand: 'flum', name: 'Flum Pebble 6000', puffs: '6,000', price: 14.99, nic: '50mg', ml: '14ml', desc: 'Ultra-portable pebble shape, beginner-friendly, no buttons, draw-activated. Bold flavors in a compact form.', flavors: ['Strawberry Ice Cream', 'Watermelon Bubble Gum', 'Apple Peach', 'Black Ice', 'Pink Lemon'], badge: '', cat: '5000-10000', emoji: '💨' },
-  { id: 'breeze-pro', brand: 'breeze', name: 'Breeze Pro', puffs: '2,000', price: 11.99, nic: '50mg', ml: '6ml', desc: 'Top 4 US retail brand (Circana data). Smooth, consistent vapor. Trusted name widely available nationwide.', flavors: ['Mango Ice', 'Watermelon Ice', 'Strawberry Banana', 'Mint', 'Pineapple Ice', 'Lychee Ice'], badge: '', cat: 'under-5000', emoji: '🌬️' },
-  { id: 'breeze-prime-6000', brand: 'breeze', name: 'Breeze Prime 6000', puffs: '6,000', price: 15.99, nic: '50mg', ml: '10ml', desc: 'Upgraded Breeze experience. #7 retail brand US by Circana. Rechargeable battery, expanded flavor library.', flavors: ['Mango Ice', 'Blueberry Mint', 'Peach Ice', 'Watermelon Patch', 'Cool Mint'], badge: '', cat: '5000-10000', emoji: '🌬️' },
   ...FIFTY_BAR_PRODUCTS,
-  { id: 'tyson-heavyweight', brand: 'tyson', name: 'Tyson 2.0 Heavyweight', puffs: '7,000', price: 16.99, nic: '50mg', ml: '12ml', desc: 'Mike Tyson-branded disposable. Knockout flavor, smooth draw. One of the most recognized celebrity vape brands in the US.', flavors: ['Strawberry Watermelon Punch', 'Blue Razz', 'Mango Peach', 'Bombpop', 'Grape Ice', 'Pink Lemonade'], badge: '', cat: '5000-10000', emoji: '🥊' },
+  ...B2_PRODUCTS,
+  { id: 'breeze-prime-6000', brand: 'breeze', name: 'Breeze Prime 6000', puffs: '6,000', price: 15.99, nic: '50mg', ml: '10ml', desc: 'Upgraded Breeze experience. #7 retail brand US by Circana. Rechargeable battery, expanded flavor library.', flavors: ['Mango Ice', 'Blueberry Mint', 'Peach Ice', 'Watermelon Patch', 'Cool Mint'], badge: '', cat: '5000-10000', emoji: '🌬️' },
   { id: 'vuse-alto', brand: 'vuse', name: 'Vuse Alto', puffs: 'N/A', price: 8.99, nic: '50mg', ml: '1.8ml pod', desc: '#1 US retail brand. Full FDA PMTA authorization. Pre-filled pods in Tobacco, Menthol — only FDA-authorized flavors.', flavors: ['Rich Tobacco', 'Menthol'], badge: 'FDA Auth', cat: 'pod-system', emoji: '✅' },
   { id: 'njoy-ace', brand: 'njoy', name: 'NJOY Ace', puffs: 'N/A', price: 7.99, nic: '45mg', ml: 'per pod', desc: 'FDA marketing authorization granted. Altria distribution network. Widely available. Tobacco and menthol flavors only.', flavors: ['Tobacco', 'Menthol'], badge: 'FDA Auth', cat: 'pod-system', emoji: '✅' },
   { id: 'smok-nord-5', brand: 'smok', name: 'SMOK Nord 5', puffs: 'refillable', price: 39.99, nic: 'varies', ml: 'refillable', desc: 'The iconic pod mod. Adjustable airflow, multiple coil options, 2000mAh battery. For experienced vapers who want control.', flavors: ['All e-liquids compatible'], badge: '', cat: 'pod-system', emoji: '🔥' },
@@ -330,10 +446,14 @@ export const PRODUCTS = [
   { id: 'hqd-cuvie-bar', brand: 'hqd', name: 'HQD Cuvie Bar', puffs: '7,000', price: 13.99, nic: '50mg', ml: '12ml', desc: '#8 US retail brand (Circana data). Slim bar form, auto-draw, wide flavor selection at accessible price point.', flavors: ['Peach Ice', 'Watermelon Ice', 'Blueberry Ice', 'Strawberry Kiwi', 'Lemon Mint', 'Grape Ice'], badge: '', cat: '5000-10000', emoji: '💎' },
 ];
 
+// p.puffs is usually a bare number ("15,000") but sometimes already a full phrase
+// ("35,000 per pod", "N/A", "refillable") — only append "puffs" onto the bare-number form.
+export const puffsLabel = (puffs) => (/^[\d,]+$/.test(puffs) ? `${puffs} puffs` : puffs);
+
 export const getById = (id) => PRODUCTS.find((p) => p.id === id);
 export const getByBrand = (brandId) => PRODUCTS.filter((p) => p.brand === brandId);
 export const getByCat = (cat) => PRODUCTS.filter((p) => p.cat === cat);
-export const FEATURED_IDS = ['geek-bar-pulse-15000', 'raz-dc25000', 'fifty-bar-black-vanilla-custard', 'lost-mary-mo5000', 'breeze-prime-6000', 'tyson-heavyweight', 'flum-pebble-6000', 'hqd-cuvie-bar'];
+export const FEATURED_IDS = ['geek-bar-pulse-strawberry-banana', 'raz-vape-dc25000-hawaiian-punch', 'fifty-bar-black-vanilla-custard', 'lost-mary-viz-55k-watermelon-ice', 'breeze-prime-6000', 'tyson-heavyweight-watermelon', 'flum-pebble-luscious-watermelon', 'hqd-cuvie-bar'];
 export const getFeatured = () => PRODUCTS.filter((p) => FEATURED_IDS.includes(p.id));
 export const getNewArrivals = () => PRODUCTS.filter((p) => p.badge === 'New' || p.badge === 'USA Made');
 export const getBestSellers = () => PRODUCTS.filter((p) => p.badge === 'Best Seller' || p.badge === 'Hot' || FEATURED_IDS.includes(p.id));

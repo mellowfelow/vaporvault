@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return FLAVORS.map((f) => ({ flavor: f.id }));
 }
 
-export function generateMetadata({ params }) {
-  const flavor = FLAVORS.find((f) => f.id === params.flavor);
+export async function generateMetadata({ params }) {
+  const { flavor: flavorId } = await params;
+  const flavor = FLAVORS.find((f) => f.id === flavorId);
   if (!flavor) return {};
   return {
     title: `${flavor.label} Disposable Vapes`,
@@ -18,8 +19,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function FlavorPage({ params }) {
-  const flavor = FLAVORS.find((f) => f.id === params.flavor);
+export default async function FlavorPage({ params }) {
+  const { flavor: flavorId } = await params;
+  const flavor = FLAVORS.find((f) => f.id === flavorId);
   if (!flavor) notFound();
   const products = getByFlavor(flavor.keyword);
 

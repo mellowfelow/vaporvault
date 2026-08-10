@@ -10,8 +10,9 @@ export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ category: c.id }));
 }
 
-export function generateMetadata({ params }) {
-  const cat = CATEGORIES.find((c) => c.id === params.category);
+export async function generateMetadata({ params }) {
+  const { category } = await params;
+  const cat = CATEGORIES.find((c) => c.id === category);
   if (!cat) return {};
   return {
     title: `Shop ${cat.label}`,
@@ -20,8 +21,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function ShopCategoryPage({ params }) {
-  const cat = CATEGORIES.find((c) => c.id === params.category);
+export default async function ShopCategoryPage({ params }) {
+  const { category } = await params;
+  const cat = CATEGORIES.find((c) => c.id === category);
   if (!cat) notFound();
 
   const podProducts = PRODUCTS.filter((p) => p.cat === 'pod-system');

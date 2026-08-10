@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SITE, PRODUCTS, getById, getBrand, getByBrand } from '@/config/site';
+import { SITE, PRODUCTS, getById, getBrand, getByBrand, puffsLabel } from '@/config/site';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ComplianceBanner from '@/components/ComplianceBanner';
 import ProductCard from '@/components/ProductCard';
@@ -9,23 +9,34 @@ import ProductDetailActions from '@/components/ProductDetailActions';
 
 const RULES_NOTE = 'PACT Act compliant, with age verification at checkout and an adult signature required at delivery';
 
+// product.series sometimes already starts with the brand label ("Lost Mary Nera Fullview
+// Pods") and sometimes doesn't ("Original Series") — never double up the brand name.
+const seriesLabel = (product, brand) => {
+  if (!product.series) return brand.label;
+  return product.series.startsWith(brand.label) ? product.series : `${brand.label} — ${product.series}`;
+};
+const seriesOnly = (product, brand) => (product.series && product.series !== brand.label ? product.series : brand.label);
+// Title-cased variant of puffsLabel for headings/metadata ("15,000 Puffs" vs "15,000 per pod").
+const puffsPhrase = (puffs) => puffsLabel(puffs).replace(/ puffs$/, ' Puffs');
+
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.id }));
 }
 
-export function generateMetadata({ params }) {
-  const product = getById(params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const product = getById(slug);
   if (!product) return {};
   const brand = getBrand(product.brand);
   return {
-    title: `${product.name} — ${product.puffs} Puffs`,
+    title: `${product.name} — ${puffsPhrase(product.puffs)}`,
     description: `Buy ${product.name} online at ${SITE.name}. ${product.desc} ${product.puffs} puffs, ${product.nic} nicotine. ${brand?.pmta === 'authorized' ? 'FDA PMTA authorized.' : 'PMTA pending.'}`,
     alternates: { canonical: `/product/${product.id}/` },
   };
 }
 
 const SPEC_ROWS = (p) => [
-  ['Puff Count', p.puffs !== 'N/A' && p.puffs !== 'refillable' ? `${p.puffs} Puffs` : p.puffs],
+  ['Puff Count', p.puffs !== 'N/A' && p.puffs !== 'refillable' ? puffsPhrase(p.puffs) : p.puffs],
   ['Nicotine', p.nic],
   ['E-Liquid', p.ml],
   ['Battery', p.battery],
@@ -34,8 +45,9 @@ const SPEC_ROWS = (p) => [
   ['Airflow', p.airflow],
 ].filter(([, v]) => v);
 
-export default function ProductDetailPage({ params }) {
-  const product = getById(params.slug);
+export default async function ProductDetailPage({ params }) {
+  const { slug } = await params;
+  const product = getById(slug);
   if (!product) notFound();
   const brand = getBrand(product.brand);
   if (!brand) notFound();
@@ -62,7 +74,7 @@ export default function ProductDetailPage({ params }) {
               )}
             </div>
             <div>
-              <p className="pc-brand" style={{ fontSize: 13 }}>{brand.label}{product.series && product.series !== brand.label ? ` — ${product.series}` : ''}</p>
+              <p className="pc-brand" style={{ fontSize: 13 }}>{seriesLabel(product, brand)}</p>
               <h1 style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(28px,4vw,42px)', letterSpacing: '.02em', color: 'var(--white)', margin: '6px 0 14px' }}>{product.name}</h1>
               <p style={{ color: 'var(--off)', lineHeight: 1.75, marginBottom: 20 }}>{product.desc}</p>
               <p className="pc-price" style={{ fontSize: 32, marginBottom: 24 }}>${product.price.toFixed(2)}</p>
@@ -87,7 +99,7 @@ export default function ProductDetailPage({ params }) {
           <div className="legal-body" style={{ maxWidth: 800, marginBottom: 48 }}>
             <h2>{product.name} — Buy Online at {SITE.name}</h2>
             <p>
-              {product.name} is part of the {brand.label} {product.series && product.series !== brand.label ? product.series : 'lineup'} at {SITE.name}.
+              {product.name} is part of the {seriesOnly(product, brand)} lineup at {SITE.name}.
               {' '}{product.desc} Each device delivers {product.puffs !== 'N/A' && product.puffs !== 'refillable' ? `${product.puffs} puffs` : product.puffs}
               {product.nic ? ` at ${product.nic} nicotine` : ''}{product.ml ? `, with ${product.ml} of e-liquid` : ''}.
             </p>
@@ -101,7 +113,7 @@ export default function ProductDetailPage({ params }) {
           {related.length > 0 && (
             <>
               <h2 style={{ fontFamily: 'var(--fd)', fontSize: 28, letterSpacing: '.03em', color: 'var(--white)', marginBottom: 20 }}>
-                More {product.series && product.series !== brand.label ? product.series : brand.label} Flavors
+                More {seriesOnly(product, brand)} Flavors
               </h2>
               <div className="products-grid">
                 {related.map((p) => <ProductCard key={p.id} product={p} />)}

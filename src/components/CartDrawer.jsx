@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/lib/CartContext';
-import { getBrand, getById, RULES } from '@/config/site';
+import { getBrand, getById, RULES, puffsLabel } from '@/config/site';
 
 export default function CartDrawer() {
   const { items, remove, setQty, open, setOpen, totals } = useCart();
@@ -35,7 +35,7 @@ export default function CartDrawer() {
                 <div>
                   <p className="cart-item-brand">{b?.label}</p>
                   <p className="cart-item-name">{p.name}</p>
-                  <p style={{ fontSize: 11, color: 'var(--silver)', marginBottom: 6 }}>⚡ {p.puffs} puffs</p>
+                  <p style={{ fontSize: 11, color: 'var(--silver)', marginBottom: 6 }}>⚡ {puffsLabel(p.puffs)}</p>
                   <div className="qty-control">
                     <button type="button" className="qty-btn" aria-label="Decrease quantity" onClick={() => setQty(p.id, item.qty - 1)}>−</button>
                     <span className="qty-num">{item.qty}</span>
